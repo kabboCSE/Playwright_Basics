@@ -3,10 +3,9 @@ package com.selenium;
 import com.microsoft.playwright.*;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class BaseDriver {
+public class Locators {
     Playwright playwright;
     BrowserType browserType;
     Browser browser;
@@ -23,10 +22,16 @@ public class BaseDriver {
             System.out.println("Browser version: " + browser.version());
     }
 
-    @Test
+    @Test (priority = 0)
     public void openUrl() throws InterruptedException {
             Thread.sleep(2000);
-            page.navigate("https://testing-and-learning-hub.vercel.app/index.html");
+            page.navigate("https://testing-and-learning-hub.vercel.app/Selenium/pages/registration_form.html");
+        Thread.sleep(5000);
+    }
+    @Test (priority = 1)
+    public void locators() throws InterruptedException {
+        ElementHandle element = page.querySelector("#first-name");
+        element.fill("Kabbo");
         Thread.sleep(5000);
     }
 
