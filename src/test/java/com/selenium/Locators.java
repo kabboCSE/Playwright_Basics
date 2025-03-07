@@ -29,11 +29,27 @@ public class Locators {
         Thread.sleep(5000);
     }
     @Test (priority = 1)
-    public void locators() throws InterruptedException {
-        ElementHandle element = page.querySelector("#first-name");
+    public void locateByID() throws InterruptedException {
+        ElementHandle element = page.querySelector("#first-name"); // By ID
+        element.fill("Shahriar");
+        Thread.sleep(5000);
+    }
+
+    @Test (priority = 2)
+    public void locateByName() throws InterruptedException {
+        ElementHandle element = page.querySelector("[name='last-name']");
         element.fill("Kabbo");
         Thread.sleep(5000);
     }
+
+    @Test (priority = 3)
+    public void locateByLinkText() throws InterruptedException {
+        ElementHandle element = page.querySelector("a:has-text(\"Back to Home\")");
+        element.click();
+        Thread.sleep(5000);
+    }
+
+
 
 
     @AfterSuite
