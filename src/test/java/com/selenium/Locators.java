@@ -5,6 +5,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class Locators {
     Playwright playwright;
     BrowserType browserType;
@@ -32,22 +34,59 @@ public class Locators {
     public void locateByID() throws InterruptedException {
         ElementHandle element = page.querySelector("#first-name"); // By ID
         element.fill("Shahriar");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
 
     @Test (priority = 2)
     public void locateByName() throws InterruptedException {
         ElementHandle element = page.querySelector("[name='last-name']");
         element.fill("Kabbo");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
 
-    @Test (priority = 3)
+//    @Test (priority = 3)
     public void locateByLinkText() throws InterruptedException {
         ElementHandle element = page.querySelector("a:has-text(\"Back to Home\")");
         element.click();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
+
+    @Test (priority = 4)  //How many input tags exist
+    public void locate() throws InterruptedException {
+        List<ElementHandle> element = page.querySelectorAll("input");
+        System.out.println("Element size : " + element.size());
+        Thread.sleep(2000);
+
+        for (ElementHandle handle : element){
+            String id = handle.getAttribute("id");
+            System.out.println("ID is: " +id);
+        }
+    }
+
+//        @Test (priority = 4)  //How many input tags exist
+    public void locatenew() throws InterruptedException {
+
+
+
+        List<ElementHandle> element = page.querySelectorAll("input[placeholder]");
+        System.out.println("Element size : " + element.size());
+        Thread.sleep(2000);
+
+        for (ElementHandle handle : element){
+            String id = handle.getAttribute("placeholder");
+//            System.out.println("ID size : " + element.size());
+            System.out.println("ID is: " +id);
+        }
+    }
+
+
+    @Test (priority = 5)
+    public void locateByXPath() throws InterruptedException {
+        ElementHandle element = page.querySelector("//input[@id='qualification']");
+        element.fill("SQA");
+        Thread.sleep(2000);
+    }
+
 
 
 
