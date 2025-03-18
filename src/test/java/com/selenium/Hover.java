@@ -6,9 +6,8 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class CheckboxHandling {
+public class Hover {
     Playwright playwright;
     BrowserType browserType;
     Browser browser;
@@ -23,7 +22,7 @@ public class CheckboxHandling {
                 .setHeadless(false)
                 .setArgs(Arrays.asList(new String[]{"--start-maximized"})));
         browserContext = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(null));
+                .setViewportSize(null)); // new season create
         page = browser.newPage();
         System.out.println("Browser version: " + browser.version());
     }
@@ -31,43 +30,25 @@ public class CheckboxHandling {
     @Test
     public void openUrl() throws InterruptedException {
         Thread.sleep(2000);
-        page.navigate("https://testing-and-learning-hub.vercel.app/Selenium/pages/registration_form.html");
+        page.navigate("https://testing-and-learning-hub.vercel.app/Selenium/pages/menu.html");
         Thread.sleep(5000);
     }
-
-    //@Test(dependsOnMethods = "openUrl")
-    public void clickOnCheckbox() throws InterruptedException {
-        ElementHandle element = page.querySelector("//input[@id='hobby1']");
-        element.click();
-    }
-
     @Test(dependsOnMethods = "openUrl")
-    public void clickMultipleCheckbox() throws InterruptedException {
-        List<ElementHandle> element = page.querySelectorAll("//input[@type=\'checkbox\']");
-        for (ElementHandle checkbox : element) {
-            if (!checkbox.isChecked()) {
-                checkbox.click();
-                Thread.sleep(1000);
-            }
-        }
-
+    public void hoverHandling() throws InterruptedException {
+        ElementHandle products = page.querySelector("//a[@id='productsDropdown']");
+        products.hover();
         Thread.sleep(2000);
-    }
 
-    @Test(dependsOnMethods = "openUrl")
-    public void clickMultipleUnCheckbox() throws InterruptedException {
-        List<ElementHandle> element = page.querySelectorAll("//input[@type=\'checkbox\']");
-        for (ElementHandle Uncheck : element) {
-            if (Uncheck.isChecked()) {
-                Uncheck.click();
-                Thread.sleep(1000);
-            }
-        }
-
+        ElementHandle categories = page.querySelector("//a[normalize-space()='Categories']");
+        categories.hover();
         Thread.sleep(2000);
+
+        ElementHandle electronics = page.querySelector("//a[normalize-space()='Electronics']");
+        electronics.hover();
+        Thread.sleep(2000);
+
+
     }
-
-
 
 
     @AfterSuite
