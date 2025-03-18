@@ -19,11 +19,8 @@ public class CheckboxHandling {
     public void start(){
         playwright = Playwright.create();
         browserType = playwright.chromium();
-        browser = browserType.launch(new BrowserType.LaunchOptions()
-                .setHeadless(false)
-                .setArgs(Arrays.asList(new String[]{"--start-maximized"})));
-        browserContext = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(null));
+        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browserContext = browser.newContext();
         page = browser.newPage();
         System.out.println("Browser version: " + browser.version());
     }
