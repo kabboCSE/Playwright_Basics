@@ -47,7 +47,7 @@ public class ScrollHandling {
     }
 
 
-    @Test( priority = 3 )
+    @Test( priority = 3 ) //scroll to specific location
     public void scrollToSpecificLocation() throws InterruptedException {
         ElementHandle element = page.querySelector("//h2[normalize-space()='Interactive Form']");
         element.scrollIntoViewIfNeeded();
