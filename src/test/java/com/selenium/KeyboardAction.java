@@ -97,6 +97,10 @@ public class KeyboardAction {
         page.keyboard().down("Control");
         page.keyboard().press("KeyV");
         Thread.sleep(2000);
+        page.click("#qualification");
+        page.keyboard().down("Control");
+        page.keyboard().press("KeyV");
+        Thread.sleep(2000);
 
 
 
