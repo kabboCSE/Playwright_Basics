@@ -81,14 +81,32 @@ public class TableHandling {
 //    }
     @Test(priority = 5)
     public void fetchSpecificvalue() throws InterruptedException {
-        List<ElementHandle> row_size = page.querySelectorAll("//table[@id='table1']//tbody//tr");
+        List<ElementHandle> table_rows = page.querySelectorAll("//table[@id='table1']//tbody//tr");
 
-        for(int i = 1; i<=row_size.size(); i++){
+        for(int i = 1; i<=table_rows.size(); i++){
             ElementHandle table_data = page.querySelector("//table[@id='table1']//tr["+i+"]//td[5]");
             String value = table_data.textContent();
             System.out.println("Email : " + value);
         }
     }
+
+    @Test(priority = 5)
+    public void fetchColumn() throws InterruptedException {
+        List<ElementHandle> table_rows = page.querySelectorAll("//table[@id='table1']//tbody//tr");
+
+        for(int i = 1; i<=table_rows.size(); i++){
+            List<ElementHandle> table_col = page.querySelectorAll("//table[@id='table1']//tbody//tr[1]//td");
+            for(int j = 1; j<=table_col.size(); j++){
+                ElementHandle table_data = page.querySelector("//table[@id='table1']//tr["+i+"]//td["+j+"]");
+                String value = table_data.textContent();
+                System.out.println(value);
+            }
+
+                System.out.println("==============================");
+
+        }
+    }
+
 
     @AfterSuite
     public void stop(){
